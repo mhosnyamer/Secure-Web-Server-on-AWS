@@ -1,5 +1,4 @@
-# Title
-AWS Infrastructure with Terraform
+# AWS Infrastructure with Terraform
 
 ## Overview
 This project uses Terraform to deploy a scalable and secure architecture on AWS. The infrastructure supports a reverse proxy layer in public subnets and backend application servers in private subnets. The Terraform state is securely stored in an S3 bucket, with DynamoDB for state file locking to prevent conflicts during concurrent updates.
