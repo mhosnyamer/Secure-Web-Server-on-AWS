@@ -19,3 +19,10 @@ variable "nat_gw_name" {
     type = string
 }
 
+variable "public_rt_name" {
+  type = string
+}
+
+variable "private_rt_name" {
+  type = string
+}

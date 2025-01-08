@@ -1,28 +1,39 @@
-module "subnet-and-rt" {
+module "Public-Subnet1" {
   source = "./modules/subnet"
   vpc_id = module.vpc.vpc_id
-  
-  public_subnet_cidr_block1 = "10.0.0.0/24"
-  public_subnet_name1 = "Public-Subnet1"
-  availability_zone1 = var.az1
-  private_subnet_cidr_block1 = "10.0.1.0/24"
-  private_subnet_name1 = "Private-Subnet1"
+  subnet_name = "Public-Subnet1"
+  subnet_cidr_block = "10.0.0.0/24"
+  has_public_ip = true
+  availability_zone = var.az1
+  rt_id = module.vpc.public_rt_id
+}
 
-  public_subnet_cidr_block2 = "10.0.2.0/24"
-  public_subnet_name2 = "Public-Subnet2"
-  private_subnet_cidr_block2 = "10.0.3.0/24"
-  private_subnet_name2 = "Private-Subnet2"
-  availability_zone2 = var.az2
+module "Private-Subnet1" {
+  source = "./modules/subnet"
+  vpc_id = module.vpc.vpc_id
+  subnet_name = "Private-Subnet1"
+  subnet_cidr_block = "10.0.1.0/24"
+  has_public_ip = false
+  availability_zone = var.az1
+  rt_id = module.vpc.private_rt_id
+}
 
-  public_rt_name = "Public-rt"
-  private_rt_name  = "Private-rt"
-  
-  aws_internet_gateway_id = module.vpc.igw_id
-  aws_nat_gateway_id = module.vpc.nat_gw_id
+module "Public-Subnet2" {
+  source = "./modules/subnet"
+  vpc_id = module.vpc.vpc_id
+  subnet_name = "Public-Subnet2"
+  subnet_cidr_block = "10.0.2.0/24"
+  has_public_ip = true
+  availability_zone = var.az2
+  rt_id = module.vpc.public_rt_id
+}
 
-}  
-
-
-
-
-
+module "Private-Subnet2" {
+  source = "./modules/subnet"
+  vpc_id = module.vpc.vpc_id
+  subnet_name = "Private-Subnet2"
+  subnet_cidr_block = "10.0.3.0/24"
+  has_public_ip = false
+  availability_zone = var.az2
+  rt_id = module.vpc.private_rt_id
+}

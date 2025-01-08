@@ -19,8 +19,14 @@ variable "instance_name" {
     type = string
 }
 
-variable "need_key" {
-  type = bool
-  default = false
+variable "key_name" {
+  type =  string
 }
 
+variable "userdata_template_path" {
+  type = string
+}
+
+variable "internal_alb_dns" {
+  type = string
+}
